@@ -24,6 +24,10 @@
 % \usepackage[dvips]{graphicx}
 \usepackage[dvipdfmx]{graphicx} %% グラフィックエンジンをラスタにも対応させるため変更（2024/05/27: Ishii）
 \usepackage{nidanfloat} %% appended in WISS2010 for Future Vision (2010/7/7:akita)
+%% nidanfloat(2018) は LaTeX 2020 以降の mark 機構と非互換で
+%% "! LaTeX mark Error: Infinite shrinkage found in 'column'." を起こすため、
+%% 二段組の mark 更新のみ無効化する（wiss.cls のヘッダは mark を使わないので影響なし）
+\makeatletter\let\@expl@@@mark@update@dblcol@structures@@\@empty\makeatother
 \usepackage{multicol}
 \usepackage{color}
 %\usepackage{color,array}
