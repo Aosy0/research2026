@@ -1,0 +1,537 @@
+i a2ping: Advanced PS, PDF, EPS converter
+i a2ping.win32: win32 files of a2ping
+i adhocfilelist: '\listfiles' entries from the command line
+i adobemapping: Adobe cmap and pdfmapping files
+i ae: Virtual fonts for T1 encoded CMR-fonts
+i amscls: AMS document classes for LaTeX
+i amsfonts: TeX fonts from the American Mathematical Society
+i amsmath: AMS mathematical facilities for LaTeX
+i anysize: A simple package to set up document margins
+i arara: Automation of LaTeX compilation
+i arara.win32: win32 files of arara
+i arphic: Arphic (Chinese) font packages
+i ascmac: Boxes and picture macros with Japanese vertical writing support
+i asymptote: 2D and 3D TeX-Aware Vector Graphics Language
+i asymptote.win32: win32 files of asymptote
+i atbegshi: Execute stuff at \shipout time
+i attachfile2: Attach files into PDF
+i attachfile2.win32: win32 files of attachfile2
+i atveryend: Hooks at the very end of a document
+i auxhook: Hooks for auxiliary files
+i babel: Multilingual support for LaTeX, LuaLaTeX, XeLaTeX, and Plain TeX
+i babel-basque: Babel contributed support for Basque
+i babel-czech: Babel support for Czech
+i babel-danish: Babel contributed support for Danish
+i babel-dutch: Babel contributed support for Dutch
+i babel-english: Babel support for English
+i babel-finnish: Babel support for Finnish
+i babel-french: Babel contributed support for French
+i babel-german: Babel support for documents written in German
+i babel-hungarian: Babel support for Hungarian (Magyar)
+i babel-italian: Babel support for Italian text
+i babel-japanese: Babel support for Japanese
+i babel-norsk: Babel support for Norwegian
+i babel-polish: Babel support for Polish
+i babel-portuges: Babel support for Portuges
+i babel-spanish: Babel support for Spanish
+i babel-swedish: Babel support for typesetting Swedish
+i babelbib: Multilingual bibliographies
+i beamer: A LaTeX class for producing presentations and slides
+i bibtex: Process bibliographies for LaTeX, etc
+i bibtex.win32: win32 files of bibtex
+i bibtex8: BibTeX variant supporting 8-bit encodings
+i bibtex8.win32: win32 files of bibtex8
+i bibtexu: BibTeX variant supporting Unicode (UTF-8), via ICU
+i bigintcalc: Integer calculations on very large numbers
+i bitset: Handle bit-vector datatype
+i bookmark: A new bookmark (outline) organization for hyperref
+i booktabs: Publication quality tables in LaTeX
+i breqn: Automatic line breaking of displayed equations
+i bundledoc: Bundle together all the files needed to build a LaTeX document
+i bundledoc.win32: win32 files of bundledoc
+i bxbase: BX bundle base components
+i bxcjkjatype: Typeset Japanese with pdfLaTeX and CJK
+i bxghost: Ghost insertion for proper xkanjiskip
+i bxjaholiday: Support for Japanese holidays
+i bxjalipsum: Dummy text in Japanese
+i bxjaprnind: Adjust the position of parentheses at paragraph head
+i bxjatoucs: Convert Japanese character code to Unicode
+i bxjscls: Japanese document class collection for all major engines
+i bxorigcapt: To retain the original caption names when using Babel
+i bxwareki: Convert dates from Gregorian to Japanese calender
+i c90: c90 font encoding for Thai
+i caption: Customising captions in floating environments
+i carlisle: David Carlisle's small packages
+i checklistings: Pass verbatim contents through a compiler and reincorporate the resulting output
+i chklref: Check for problems with labels in LaTeX
+i chklref.win32: win32 files of chklref
+i chktex: Check for errors in LaTeX documents
+i chktex.win32: win32 files of chktex
+i cite: Improved citation handling in LaTeX
+i cjk: CJK language support
+i cjk-gs-integrate: Tools to integrate CJK fonts into Ghostscript
+i cjk-gs-integrate.win32: win32 files of cjk-gs-integrate
+i cjkpunct: Adjust locations and kerning of CJK punctuation marks
+i cjkutils: CJK language support
+i cjkutils.win32: win32 files of cjkutils
+i clojure-pamphlet: A simple literate programming tool based on clojure's pamphlet system
+i clojure-pamphlet.win32: win32 files of clojure-pamphlet
+i cluttex: An automation tool for running LaTeX
+i cluttex.win32: win32 files of cluttex
+i cm: Computer Modern fonts
+i cmap: Make PDF files searchable and copyable
+i cns: Chinese/Japanese/Korean bitmap fonts
+i collection-basic: Essential programs and files
+i collection-binextra: TeX auxiliary programs
+i collection-langcjk: Chinese/Japanese/Korean (base)
+i collection-langjapanese: Japanese
+i collection-latex: LaTeX fundamental packages
+i collection-latexrecommended: LaTeX recommended packages
+i colorprofiles: Collection of free ICC profiles
+i colortbl: Add colour to LaTeX tables
+i convbkmk: Correct platex/uplatex bookmarks in PDF created with hyperref
+i convbkmk.win32: win32 files of convbkmk
+i crop: Support for cropmarks
+i ctable: Flexible typesetting of table and figure floats using key/value directives
+i ctablestack: Catcode table stable support
+i ctan-o-mat: Upload or validate a package for CTAN
+i ctan-o-mat.win32: win32 files of ctan-o-mat
+i ctan_chk: CTAN guidelines verifier and corrector for uploading projects
+i ctanbib: Export CTAN entries to bib format
+i ctanbib.win32: win32 files of ctanbib
+i ctanify: Prepare a package for upload to CTAN
+i ctanify.win32: win32 files of ctanify
+i ctanupload: Support for users uploading to CTAN
+i ctanupload.win32: win32 files of ctanupload
+i ctex: LaTeX classes and packages for Chinese typesetting
+i ctie: C version of tie (merging Web change files)
+i ctie.win32: win32 files of ctie
+i cweb: CWEB for ANSI-C/C++ compilers
+i cweb.win32: win32 files of cweb
+i de-macro: Expand private macros in a document
+i de-macro.win32: win32 files of de-macro
+i dehyph: German hyphenation patterns for traditional orthography
+i detex: Strip TeX from a source file
+i detex.win32: win32 files of detex
+i dnp: subfont numbers for DNP font encoding
+i dtl: Tools to dis-assemble and re-assemble DVI files
+i dtl.win32: win32 files of dtl
+i dtxgen: Creates a template for a self-extracting .dtx file
+i dvi2tty: Produce ASCII from DVI
+i dvi2tty.win32: win32 files of dvi2tty
+i dviasm: A utility for editing DVI files
+i dviasm.win32: win32 files of dviasm
+i dvicopy: Copy DVI files, flattening VFs
+i dvicopy.win32: win32 files of dvicopy
+i dvidvi: Convert one DVI file into another
+i dvidvi.win32: win32 files of dvidvi
+i dviinfox: Perl script to print DVI meta information
+i dviinfox.win32: win32 files of dviinfox
+i dviljk: DVI to Laserjet output
+i dviljk.win32: win32 files of dviljk
+i dviout-util: (shortdesc missing)
+i dviout-util.win32: win32 files of dviout-util
+i dvipdfmx: An extended version of dvipdfm
+i dvipdfmx.win32: win32 files of dvipdfmx
+i dvipng: A fast DVI to PNG/GIF converter
+i dvipng.win32: win32 files of dvipng
+i dvipos: support DVI pos: specials used by ConTeXt DVI output
+i dvipos.win32: win32 files of dvipos
+i dvips: A DVI to PostScript driver
+i dvips.win32: win32 files of dvips
+i dvisvgm: Convert DVI, EPS, and PDF files to Scalable Vector Graphics format (SVG)
+i dvisvgm.win32: win32 files of dvisvgm
+i ec: Computer modern fonts in T1 and TS1 encodings
+i enctex: A TeX extension that translates input on its way into TeX
+i endnotesj: Japanese-style endnotes
+i epstopdf-pkg: Call epstopdf "on the fly"
+i eso-pic: Add picture commands (or backgrounds) to every page
+i etex: An extended version of TeX, from the NTS project
+i etex-pkg: E-TeX support package
+i etexcmds: Avoid name clashes with e-TeX commands
+i etoolbox: e-TeX tools for LaTeX
+i euenc: Unicode font encoding definitions for XeTeX
+i euler: Use AMS Euler fonts for math
+i eurosym: Metafont and macros for Euro sign
+i everyhook: Hooks for standard TeX token lists
+i everysel: Provides hooks into \selectfont
+i everyshi: Take action at every \shipout
+i extsizes: Extend the standard classes' size options
+i fancybox: Variants of \fbox and other games with boxes
+i fancyhdr: Extensive control of page headers and footers in LaTeX2e
+i fancyref: A LaTeX package for fancy cross-referencing
+i fancyvrb: Sophisticated verbatim text
+i fandol: Four basic fonts for Chinese typesetting
+i filehook: Hooks for input files
+i findhyph: Find hyphenated words in a document
+i findhyph.win32: win32 files of findhyph
+i firstaid: First aid for external LaTeX files and packages that need updating
+i fix2col: Fix miscellaneous two column mode features
+i fixjfm: Fix JFM (for *pTeX)
+i float: Improved interface for floating objects
+i fonts-tlwg: Thai fonts for LaTeX from TLWG
+i fontspec: Advanced font selection in XeLaTeX and LuaLaTeX
+i footnotehyper: hyperref aware footnote.sty
+i fp: Fixed point arithmetic
+i fragmaster: Using psfrag with pdfLaTeX
+i fragmaster.win32: win32 files of fragmaster
+i garuda-c90: TeX support (from CJK) for the garuda font
+i gckanbun: Kanbun typesetting for (u)pLaTeX and LuaLaTeX
+i gentombow: Generate Japanese-style crop marks
+i geometry: Flexible and complete interface to document dimensions
+i gettitlestring: Clean up title references
+i git-latexdiff: Call latexdiff on two Git revisions of a file
+i glyphlist: Adobe Glyph List and TeX extensions
+i graphics: The LaTeX standard graphics bundle
+i graphics-cfg: Sample configuration files for LaTeX color and graphics
+i graphics-def: Colour and graphics option files
+i grfext: Manipulate the graphics package's list of extensions
+i grffile: Extended file name support for graphics (legacy package)
+i gsftopk: Convert "Ghostscript fonts" to PK files
+i gsftopk.win32: win32 files of gsftopk
+i haranoaji: Harano Aji Fonts
+i haranoaji-extra: Harano Aji Fonts
+i hologo: A collection of logos with bookmark support
+i hook-pre-commit-pkg: Pre-commit git hook for LaTeX package developpers
+i hopatch: Load patches for packages
+i hycolor: Implements colour for packages hyperref and bookmark
+i hyperref: Extensive support for hypertext in LaTeX
+i hyph-utf8: Hyphenation patterns expressed in UTF-8
+i hyphen-base: core hyphenation support files
+i hyphen-basque: Basque hyphenation patterns.
+i hyphen-czech: Czech hyphenation patterns.
+i hyphen-danish: Danish hyphenation patterns.
+i hyphen-dutch: Dutch hyphenation patterns.
+i hyphen-english: English hyphenation patterns.
+i hyphen-finnish: Finnish hyphenation patterns.
+i hyphen-french: French hyphenation patterns.
+i hyphen-german: German hyphenation patterns.
+i hyphen-hungarian: Hungarian hyphenation patterns.
+i hyphen-italian: Italian hyphenation patterns.
+i hyphen-norwegian: Norwegian Bokmal and Nynorsk hyphenation patterns.
+i hyphen-polish: Polish hyphenation patterns.
+i hyphen-portuguese: Portuguese hyphenation patterns.
+i hyphen-spanish: Spanish hyphenation patterns.
+i hyphen-swedish: Swedish hyphenation patterns.
+i hyphenex: US English hyphenation exceptions file
+i ifplatform: Conditionals to test which platform is being used
+i ifptex: Check if the engine is pTeX or one of its derivatives
+i iftex: Am I running under pdfTeX, XeTeX or LuaTeX?
+i ifxptex: Detect pTeX and its derivatives
+i index: Extended index for LaTeX including multiple indexes
+i infwarerr: Complete set of information/warning/error message macros
+i installfont: A bash script for installing a LaTeX font family
+i installfont.win32: win32 files of installfont
+i intcalc: Expandable arithmetic operations with integers
+i ipaex: IPA (Japanese) fonts
+i japanese-otf: Advanced font selection for platex and its friends
+i jfmutil: Utility to process pTeX-extended TFM and VF
+i jfmutil.win32: win32 files of jfmutil
+i jknapltx: Miscellaneous packages by Joerg Knappen
+i jlreq: Japanese document class based on requirements for Japanese text layout
+i jlreq-deluxe: Multi-weight Japanese font support for the jlreq class
+i jsclasses: Classes tailored for use with Japanese
+i kanbun: Typeset kanbun-kundoku with support for kanbun annotation
+i ketcindy: macros for graphic generation and Cinderella plugin
+i ketcindy.win32: win32 files of ketcindy
+i knuth-lib: Core TeX and Metafont sources from Knuth
+i knuth-local: Knuth's local information
+i koma-script: A bundle of versatile classes and packages
+i kpathsea: Path searching library for TeX-related files
+i kpathsea.win32: win32 files of kpathsea
+i kvdefinekeys: Define keys for use in the kvsetkeys package
+i kvoptions: Key value format for package options
+i kvsetkeys: Key value parser with default handler support
+i l3backend: LaTeX3 backend drivers
+i l3experimental: Experimental LaTeX3 concepts
+i l3kernel: LaTeX3 programming conventions
+i l3packages: High-level LaTeX3 concepts
+i lacheck: LaTeX checker
+i lacheck.win32: win32 files of lacheck
+i latex: A TeX macro package that defines LaTeX
+i latex-base-dev: Development pre-release of the LaTeX kernel
+i latex-bin: LaTeX executables and man pages
+i latex-bin.win32: win32 files of latex-bin
+i latex-firstaid-dev: Development pre-release of the LaTeX firstaid package
+i latex-fonts: A collection of fonts used in LaTeX distributions
+i latex-git-log: Typeset git log information
+i latex-git-log.win32: win32 files of latex-git-log
+i latex-papersize: Calculate LaTeX settings for any font and paper size
+i latex-papersize.win32: win32 files of latex-papersize
+i latex2man: Translate LaTeX-based manual pages into Unix man format
+i latex2man.win32: win32 files of latex2man
+i latex2nemeth: Convert LaTeX source to Braille with math in Nemeth
+i latex2nemeth.win32: win32 files of latex2nemeth
+i latexbug: Bug-classification for LaTeX related bugs
+i latexconfig: configuration files for LaTeX-related formats
+i latexdiff: Determine and mark up significant differences between LaTeX files
+i latexdiff.win32: win32 files of latexdiff
+i latexfileversion: Prints the version and date of a LaTeX class or style file
+i latexindent: Indent a LaTeX document, highlighting the programming structure
+i latexindent.win32: win32 files of latexindent
+i latexmk: Fully automated LaTeX document generation
+i latexmk.win32: win32 files of latexmk
+i latexpand: Expand \input and \include in a LaTeX document
+i latexpand.win32: win32 files of latexpand
+i letltxmacro: Let assignment for LaTeX macros
+i light-latex-make: llmk: A build tool for LaTeX documents
+i light-latex-make.win32: win32 files of light-latex-make
+i lineno: Line numbers on paragraphs
+i listings: Typeset source code listings using LaTeX
+i listings-ext: Automated input of source
+i lm: Latin modern fonts in outline formats
+i lm-math: OpenType maths fonts for Latin Modern
+i lshort-japanese: Japanese version of A Short Introduction to LaTeX2e
+i ltxcmds: Some LaTeX kernel commands for general use
+i ltxfileinfo: Print version information for a LaTeX file
+i ltximg: Extract LaTeX environments into separate image files
+i ltximg.win32: win32 files of ltximg
+i ltxmisc: Miscellaneous LaTeX packages, etc
+i lua-alt-getopt: Process application arguments the same way as getopt_long
+i lua-uni-algos: Unicode algorithms for LuaTeX
+i luahbtex: LuaTeX with HarfBuzz library for glyph shaping
+i luahbtex.win32: win32 files of luahbtex
+i luajittex: LuaTeX with just-in-time (jit) compiler, with and without HarfBuzz
+i luajittex.win32: win32 files of luajittex
+i lualibs: Additional Lua functions for LuaTeX macro programmers
+i luaotfload: OpenType 'loader' for Plain TeX and LaTeX
+i luaotfload.win32: win32 files of luaotfload
+i luatex: The LuaTeX engine
+i luatex.win32: win32 files of luatex
+i luatexbase: Basic resource management for LuaTeX code
+i luatexja: Typeset Japanese with Lua(La)TeX
+i lwarp: Converts LaTeX to HTML
+i lwarp.win32: win32 files of lwarp
+i make4ht: A build system for tex4ht
+i make4ht.win32: win32 files of make4ht
+i makecmds: The new \makecommand command always (re)defines a command
+i makeindex: Makeindex development sources
+i makeindex.win32: win32 files of makeindex
+i match_parens: Find mismatches of parentheses, braces, (angle) brackets, in texts
+i match_parens.win32: win32 files of match_parens
+i mathspec: Specify arbitrary fonts for mathematics in XeTeX
+i mathtools: Mathematical tools to use with amsmath
+i mdwtools: Miscellaneous tools by Mark Wooding
+i memoir: Typeset fiction, non-fiction and mathematical books
+i mendex-doc: Documentation for Mendex index processor
+i metafont: A system for specifying fonts
+i metafont.win32: win32 files of metafont
+i metalogo: Extended TeX logo macros
+i mflogo: LaTeX support for Metafont logo fonts
+i mflua: configuration and base files for MFLua
+i mflua.win32: win32 files of mflua
+i mfnfss: Packages to typeset oldgerman and pandora fonts in LaTeX
+i mfware: Supporting tools for use with Metafont
+i mfware.win32: win32 files of mfware
+i microtype: Subliminal refinements towards typographical perfection
+i mkjobtexmf: Generate a texmf tree for a particular job
+i mkjobtexmf.win32: win32 files of mkjobtexmf
+i modes: A collection of Metafont mode_def's
+i morisawa: Enables selection of 5 standard Japanese fonts for pLaTeX + dvips
+i mptopdf: mpost to PDF, native MetaPost graphics inclusion
+i mptopdf.win32: win32 files of mptopdf
+i ms: Various LaTeX packages by Martin Schroder
+i natbib: Flexible bibliography support
+i newfloat: Define new floating environments
+i nidanfloat: Bottom placement option for double float in two column mode (nidan-kumi)
+i norasi-c90: TeX support (from CJK) for the norasi font
+i ntgclass: "European" versions of standard classes
+i oberdiek: A bundle of packages submitted by Heiko Oberdiek
+i optexcount: Python script for counting words in OpTeX documents
+i optexcount.win32: win32 files of optexcount
+i pagesel: Select pages of a document for output
+i parskip: Layout with zero \parindent, non-zero \parskip
+i patgen: Generate hyphenation patterns
+i patgen.win32: win32 files of patgen
+i pbibtex-base: Bibliography styles and miscellaneous files for pBibTeX
+i pbibtex-manual: Documentation files for (u)pBibTeX
+i pdfbook2: Create booklets from PDF files
+i pdfcrop: Crop PDF graphics
+i pdfcrop.win32: win32 files of pdfcrop
+i pdfescape: Implements pdfTeX's escape features using TeX or e-TeX
+i pdfjam: Shell scripts interfacing to pdfpages
+i pdflatexpicscale: Support software for downscaling graphics to be included by pdfLaTeX
+i pdflatexpicscale.win32: win32 files of pdflatexpicscale
+i pdflscape: Make landscape pages display as landscape
+i pdfmanagement-testphase: LaTeX PDF management testphase bundle
+i pdfpages: Include PDF documents in LaTeX
+i pdftex: A TeX extension for direct creation of PDF
+i pdftex-quiet: A bash wrapper for pdfTeX limiting its output to relevant errors
+i pdftex.win32: win32 files of pdftex
+i pdftexcmds: LuaTeX support for pdfTeX utility functions
+i pdftosrc: Extract source file or stream from PDF file
+i pdftosrc.win32: win32 files of pdftosrc
+i pdfxup: Create n-up PDF pages with minimal margins
+i pfarrei: LaTeX support of pastors' and priests' work
+i pfarrei.win32: win32 files of pfarrei
+i pgf: Create PostScript and PDF graphics in TeX
+i pkfix: Replace pk fonts in PostScript with Type 1 fonts
+i pkfix-helper: Make PostScript files accessible to pkfix
+i pkfix-helper.win32: win32 files of pkfix-helper
+i pkfix.win32: win32 files of pkfix
+i plain: The Plain TeX format
+i platex: pLaTeX2e and miscellaneous macros for pTeX
+i platex-tools: pLaTeX standard tools bundle
+i platex.win32: win32 files of platex
+i platexcheat: A LaTeX cheat sheet, in Japanese
+i plautopatch: Automated patches for pLaTeX/upLaTeX
+i polyglossia: An alternative to babel for XeLaTeX and LuaLaTeX
+i psfrag: Replace strings in encapsulated PostScript figures
+i pslatex: Use PostScript fonts by default
+i psnfss: Font support for common PostScript fonts
+i pspicture: PostScript picture support
+i ptex: A TeX system for publishing in Japanese
+i ptex-base: Plain TeX format for pTeX and e-pTeX
+i ptex-fontmaps: Font maps and configuration tools for Japanese/Chinese/Korean fonts with (u)ptex
+i ptex-fontmaps.win32: win32 files of ptex-fontmaps
+i ptex-fonts: Fonts for use with pTeX
+i ptex-manual: Japanese pTeX manual
+i ptex.win32: win32 files of ptex
+i ptex2pdf: Convert Japanese TeX documents to PDF
+i ptex2pdf.win32: win32 files of ptex2pdf
+i purifyeps: Make EPS work with both LaTeX/dvips and pdfLaTeX
+i purifyeps.win32: win32 files of purifyeps
+i pxbase: Tools for use with (u)pLaTeX
+i pxchfon: Japanese font setup for pLaTeX and upLaTeX
+i pxcjkcat: LaTeX interface for the CJK category codes of upTeX
+i pxjahyper: Hyperref support for pLaTeX
+i pxjodel: Help change metrics of fonts from japanese-otf
+i pxrubrica: Ruby annotations according to JIS X 4051
+i pxtatescale: Patch to graphics driver for scaling in vertical direction of pTeX
+i pxufont: Emulate non-Unicode Japanese fonts using Unicode fonts
+i pythontex: Run Python from within a document, typesetting the results
+i pythontex.win32: win32 files of pythontex
+i ragged2e: Alternative versions of "ragged"-type commands
+i rcs: Use RCS (revision control system) tags in LaTeX documents
+i refcount: Counter operations with label references
+i rerunfilecheck: Checksum based rerun checks on auxiliary files
+i revtex: Styles for various Physics Journals
+i sansmath: Maths in a sans font
+i scheme-basic: basic scheme (plain and latex)
+i scheme-infraonly: infrastructure-only scheme (no TeX at all)
+i scheme-minimal: minimal scheme (plain only)
+i section: Modifying section commands in LaTeX
+i seetexk: Utilities for manipulating DVI files
+i seetexk.win32: win32 files of seetexk
+i seminar: Make overhead slides
+i sepnum: Print numbers in a "friendly" format
+i setspace: Set space between lines
+i spix: Yet another TeX compilation tool: simple, human readable, no option, no magic
+i spix.win32: win32 files of spix
+i srcredact: A tool for redacting sources
+i srcredact.win32: win32 files of srcredact
+i stringenc: Converting a string between different encodings
+i sttools: Various macros
+i sty2dtx: Create a .dtx file from a .sty file
+i sty2dtx.win32: win32 files of sty2dtx
+i subfig: Figures broken into subfigures
+i svn-prov: Subversion variants of \Provides... macros
+i symbol: URW 'Base 35' font pack for LaTeX
+i synctex: engine-level feature synchronizing output and source
+i synctex.win32: win32 files of synctex
+i tex: A sophisticated typesetting engine
+i tex-ini-files: Model TeX format creation files
+i tex.win32: win32 files of tex
+i tex4ebook: Converter from LaTeX to ebook formats
+i tex4ebook.win32: win32 files of tex4ebook
+i texcount: Count words in a LaTeX document
+i texcount.win32: win32 files of texcount
+i texdef: Display the definitions of TeX commands
+i texdef.win32: win32 files of texdef
+i texdiff: Compare documents and produce tagged merge
+i texdiff.win32: win32 files of texdiff
+i texdirflatten: Collect files related to a LaTeX job in a single directory
+i texdirflatten.win32: win32 files of texdirflatten
+i texdoc: Documentation access for TeX Live
+i texdoc.win32: win32 files of texdoc
+i texdoctk: Easy access to package documentation
+i texdoctk.win32: win32 files of texdoctk
+i texfot: Filter clutter from the output of a TeX run
+i texfot.win32: win32 files of texfot
+i texlive-common: TeX Live documentation (common elements)
+i texlive-en: TeX Live manual (English)
+i texlive-ja: TeX Live manual (Japanese)
+i texlive-msg-translations: translations of the TeX Live installer and TeX Live Manager
+i texlive-scripts: TeX Live infrastructure programs
+i texlive-scripts-extra: TeX Live scripts
+i texlive-scripts-extra.win32: win32 files of texlive-scripts-extra
+i texlive-scripts.win32: win32 files of texlive-scripts
+i texlive.infra: basic TeX Live infrastructure
+i texlive.infra.win32: win32 files of texlive.infra
+i texliveonfly: On-the-fly download of missing TeX live packages
+i texliveonfly.win32: win32 files of texliveonfly
+i texloganalyser: Analyse TeX logs
+i texloganalyser.win32: win32 files of texloganalyser
+i texlogfilter: Filter LaTeX engines output or log file
+i texlogfilter.win32: win32 files of texlogfilter
+i texlogsieve: Filter and summarize LaTeX log files
+i texlogsieve.win32: win32 files of texlogsieve
+i texosquery: Cross-platform Java application to query OS information
+i texosquery.win32: win32 files of texosquery
+i texplate: A tool for creating document structures based on templates
+i texplate.win32: win32 files of texplate
+i textcase: Case conversion ignoring mathematics, etc
+i texware: Utility programs for use with TeX
+i texware.win32: win32 files of texware
+i thumbpdf: Thumbnails for pdfTeX and dvips/ps2pdf
+i thumbpdf.win32: win32 files of thumbpdf
+i tie: Allow multiple web change files
+i tie.win32: win32 files of tie
+i times: URW 'Base 35' font pack for LaTeX
+i tipa: Fonts and macros for IPA phonetics characters
+i tlcockpit: A GUI frontend to TeX Live Manager (tlmgr)
+i tlcockpit.win32: win32 files of tlcockpit
+i tlgs.win32: Freely available PostScript interpreter
+i tlperl.win32: internal Perl for Windows
+i tlshell: GUI frontend (tcl/tk-based) for tlmgr
+i tlshell.win32: win32 files of tlshell
+i tools: The LaTeX standard tools bundle
+i tpic2pdftex: Use tpic commands in pdfTeX
+i translator: Easy translation of strings in LaTeX
+i ttfutils: convert TrueType to TFM and PK fonts
+i ttfutils.win32: win32 files of ttfutils
+i typehtml: Typeset HTML directly from LaTeX
+i typeoutfileinfo: Display class/package/file information
+i ucharcat: Implementation of the (new in 2015) XeTeX \Ucharcat command in lua, for LuaTeX
+i uhc: Fonts for the Korean language
+i ulem: Package for underlining
+i underscore: Control the behaviour of "_" in text
+i unicode-data: Unicode data and loaders for TeX
+i unicode-math: Unicode mathematics support for XeTeX and LuaTeX
+i uniquecounter: Provides unlimited unique counter
+i uplatex: pLaTeX2e and miscellaneous macros for upTeX
+i uplatex.win32: win32 files of uplatex
+i upquote: Show "realistic" quotes in verbatim
+i uptex: Unicode version of pTeX
+i uptex-base: Plain TeX formats and documents for upTeX
+i uptex-fonts: Fonts for use with upTeX
+i uptex.win32: win32 files of uptex
+i url: Verbatim with URL-sensitive line breaks
+i wadalab: Wadalab (Japanese) font packages
+i web: The original literate programming system
+i web.win32: win32 files of web
+i xcjk2uni: Convert CJK characters to Unicode, in pdfTeX
+i xcolor: Driver-independent color extensions for LaTeX and pdfLaTeX
+i xdvi: A DVI previewer for the X Window System
+i xecjk: Support for CJK documents in XeLaTeX
+i xetex: An extended variant of TeX for use with Unicode sources
+i xetex.win32: win32 files of xetex
+i xetexconfig: crop.cfg for XeLaTeX
+i xindex: Unicode compatible index generation
+i xindex.win32: win32 files of xindex
+i xindy: A general-purpose index processor
+i xindy.win32: win32 files of xindy
+i xkeyval: Extension of the keyval package
+i xltxtra: "Extras" for LaTeX users of XeTeX
+i xpdfopen: Commands to control PDF readers, under X11
+i xpdfopen.win32: win32 files of xpdfopen
+i xpinyin: Automatically add pinyin to Chinese characters
+i xunicode: Generate Unicode characters from accented glyphs
+i zapfding: URW 'Base 35' font pack for LaTeX
+i zhmetrics: TFM subfont files for using Chinese fonts in 8-bit TeX
+i zhmetrics-uptex: Chinese font metrics for upTeX
+i zhnumber: Typeset Chinese representations of numbers
+i zitie: Create CJK character calligraphy practicing sheets
+i zxjafbfont: Fallback CJK font support for xeCJK
+i zxjafont: Set up Japanese font families for XeLaTeX
+i zxjatype: Standard conforming typesetting of Japanese, for XeLaTeX

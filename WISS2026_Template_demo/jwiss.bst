@@ -297,28 +297,16 @@ FUNCTION {format.title}
 
 
 FUNCTION { format.url }
-{ % return with stack untouched
-  % output URL and associated lastaccessed fields
-
-    url empty$
-      { "" }
-      {
-          %% Use \urldef, outside \showURL, so that %nn, #, etc in URLs work
-          %% correctly.  Put the actual URL on its own line to reduce the
-          %% likelihood of BibTeX's nasty line wrapping after column 79.
-          %% \url{} can undo this, but if that doesn't work for some reason
-          %% the .bbl file would have to be repaired manually.
-          "\urldef\tempurl%" writeln
-          "\url{" url * "}" * writeln
-
-          "\showURL{%" writeln
-            lastaccessed empty.or.unknown
-            { "" }
-            { "Retrieved " lastaccessed * " from " * }
-          if$
-          "\tempurl}" * writeln
-      }
-      if$
+{ % Return a \url{...} string (or empty). Called as `format.url output`.
+  % NOTE: the original ACM-derived body used JBibTeX helpers
+  % (writeln, lastaccessed, empty.or.unknown) and \showURL/\urldef,
+  % which standard (p)BibTeX and the WISS LaTeX side do not provide.
+  % Simplified so that URL entries compile cleanly and the function
+  % honours the `format.url output` contract (returns a string).
+  url empty$
+    { "" }
+    { "\url{" url * "}" * }
+  if$
 }
 
 

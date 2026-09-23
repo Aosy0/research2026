@@ -1,0 +1,16 @@
+{
+  "//": "Build this project with TeX Live 2021 (the version Overleaf pins). The user profile uses TeX Live 2023, which cannot compile nidanfloat. LaTeX-Workshop's tool `env` does not expand ${env:PATH}, so we go through latexmk-2021.cmd, which prepends TL2021 to PATH in cmd.",
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk2021",
+      "command": "cmd",
+      "args": ["/c", "%DIR%\\latexmk-2021.cmd", "-silent", "-outdir=%OUTDIR%", "%DOC%"]
+    }
+  ],
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk (TeX Live 2021)",
+      "tools": ["latexmk2021"]
+    }
+  ]
+}

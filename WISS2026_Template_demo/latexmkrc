@@ -3,7 +3,3 @@ $bibtex = 'pbibtex';
 $dvipdf = 'dvipdfmx %O -o %D %S';
 $makeindex = 'mendex %O -o %D %S';
 $pdf_mode = 3; 
-
-# jwiss.bst が JBibTeX 由来の未定義関数(writeln 等)を参照するため pbibtex が
-# 非致命的なエラーを返す。latexmk がそこで中断しないようにする（.bbl は正常生成される）。
-$force_mode = 1;
