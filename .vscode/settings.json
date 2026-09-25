@@ -7,6 +7,7 @@
       "args": ["/c", "%DIR%\\latexmk-2021.cmd", "-silent", "-outdir=%OUTDIR%", "%DOC%"]
     }
   ],
+  "latex-workshop.latex.outDir": "%DIR%/out",
   "latex-workshop.latex.recipes": [
     {
       "name": "latexmk (TeX Live 2021)",

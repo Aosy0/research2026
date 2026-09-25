@@ -2,4 +2,5 @@ $latex = 'platex';
 $bibtex = 'pbibtex';
 $dvipdf = 'dvipdfmx %O -o %D %S';
 $makeindex = 'mendex %O -o %D %S';
+$out_dir = 'out';
 $pdf_mode = 3; 
