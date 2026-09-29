@@ -31,13 +31,14 @@ research2026/
 │  ├─ setup-texlive2021.ps1     … セットアップを自動化（ダウンロード〜tlmgr まで）
 │  └─ texlive-2021-packages.txt … インストール済みパッケージ一覧（537件・構成の検証用）
 └─ WISS2026_Template_demo/
-   ├─ wiss_template.tex  … 本文（Overleaf 原本と一致）
+   ├─ wiss_template.tex  … テンプレート本文（Overleaf 原本と一致・編集しない）
+   ├─ 23fi551_wiss.tex   … 執筆中の論文本文
    ├─ wiss.cls / wissbase11.cls … スタイルクラス
    ├─ jwiss.bst          … 参考文献スタイル（format.url を標準 pBibTeX 対応に修正）
-   ├─ sample.bib         … サンプル文献（警告が出ないよう微修正）
+   ├─ sample.bib         … テンプレート付属のサンプル文献（wiss_template.tex が参照）
+   ├─ references.bib     … 執筆論文の実文献（23fi551_wiss.tex が参照）
    ├─ latexmkrc          … latexmk 設定
-   ├─ latexmk-2021.cmd   … LaTeX Workshop 用ラッパー（PATH に TL2021 を前置）
-   └─ build.ps1          … TeX Live 2021 でビルドするスクリプト（ASCII のみ）
+   └─ latexmk-2021.cmd   … ビルド用ラッパー（PATH に TL2021 を前置）
 ```
 
 ## セットアップ（各PCで1回）
@@ -101,19 +102,23 @@ $bin = 'C:\texlive\2021\bin\win32'
 
 ### コマンドライン
 
+`latexmk-2021.cmd` が PATH 先頭に `C:\texlive\2021\bin\win32` を足して `latexmk` を呼ぶ
+（既定の TeX Live には影響しない）。`latexmkrc` の設定で `platex` → `pbibtex` → `dvipdfmx`
+が順に走り、生成物は `out/` にまとまる。
+
 ```powershell
 cd WISS2026_Template_demo
-powershell -ExecutionPolicy Bypass -File .\build.ps1
-# 生成物を消してからビルドし直す場合
-powershell -ExecutionPolicy Bypass -File .\build.ps1 -Clean
+.\latexmk-2021.cmd wiss_template.tex   # テンプレート（4ページ）
+.\latexmk-2021.cmd 23fi551_wiss.tex    # 執筆論文
+# 生成物を消してやり直す場合
+Remove-Item -Recurse -Force .\out
 ```
 
-`build.ps1` はこのセッション内だけ `C:\texlive\2021\bin\win32` を PATH 先頭に足し、
-`latexmk wiss_template.tex` を実行する。既定の TeX Live 2023 には影響しない。
+> 以前の `build.ps1` は削除済み。ビルドは `latexmk-2021.cmd` に統一した。
 
 ### VS Code（LaTeX Workshop）
 
-ユーザー設定（グローバル）は TeX Live 2023 の `latexmk` を使うため、そのままだと
+ユーザー設定（グローバル）は PATH 上の `latexmk`（TeX Live 2026）を使うため、そのままだと
 `nidanfloat` で失敗する。リポジトリの `.vscode/settings.json` でこのプロジェクトだけ
 **TL2021 を使うレシピ**に上書きしている。
 
@@ -138,6 +143,16 @@ powershell -ExecutionPolicy Bypass -File .\build.ps1 -Clean
 | `Infinite shrinkage` | 発生しない（`nidanfloat` 対策行は不要） |
 | BibTeX | エラー・警告なし。`latexmk` 終了コード **0** |
 
+### 検証結果（2026-09-29・再現性確認）
+
+fresh clone（`out/` 無し）相当、および追跡済み `wiss_template.bbl` を削除した状態で検証。
+どちらも `latexmk-2021.cmd` の終了コード **0**、`!` エラー 0。
+
+| 文書 | 出力 | 備考 |
+| --- | --- | --- |
+| `wiss_template.tex` | 4ページ | テンプレート原本のまま。`sample.bib` から bibtex で `.bbl` を再生成 |
+| `23fi551_wiss.tex` | 2ページ | `references.bib` から `.bbl` を再生成 |
+
 ## つまずいた点（再発防止）
 
 1. **`install-tl-windows.exe`（自己解凍 GUI）は不安定**
@@ -147,12 +162,12 @@ powershell -ExecutionPolicy Bypass -File .\build.ps1 -Clean
    - エージェントやターミナルの待機がタイムアウトしても、`Start-Process` で起動した
      インストーラ本体は止まらない。待機だけを中断しても再開不要（ログは `%TEMP%\tl2021-install.log`）。
 3. **TeX Live 2021 の Windows バイナリは `bin\win32`**
-   - 2023 以降は `bin\windows`。`build.ps1` は `bin\*\platex.exe` を自動検出する。
+   - 2023 以降は `bin\windows`。`latexmk-2021.cmd` は `C:\texlive\2021\bin\win32` を前置する。
 4. **PowerShell スクリプトは ASCII のみで書く**
    - BOM 無し UTF-8 の日本語コメントは Windows PowerShell 5.1（Shift-JIS 解釈）で
-     構文エラーになる。`build.ps1` / `setup-texlive2021.ps1` は ASCII に統一。
-5. **VS Code が既定で TL2023 を使う**
-   - グローバルの `latex-workshop.latex.tools` は PATH 上の `latexmk`（= TL2023）。
+     構文エラーになる。`setup-texlive2021.ps1` は ASCII に統一。
+5. **VS Code が既定で新しい TeX Live を使う**
+   - グローバルの `latex-workshop.latex.tools` は PATH 上の `latexmk`（本環境は TL2026）。
      `.vscode/settings.json` で TL2021 レシピに上書きする。
 
 ## 調査と修正の記録
@@ -232,6 +247,71 @@ FUNCTION { format.url }
 - `IEEE2014` … ソート用の author/key が無く「to sort, need author or key」警告。
   → `key = {IEEE Style Manual}` を追加（出力には現れない）。
 
+### 4. `flushend` + `nidanfloat` で最終ページ出力が停止（`23fi551_wiss.tex`）
+
+**症状**
+
+```
+! Infinite glue shrinkage found in box being split.
+\iterate ...it \flushend@@varbox@a to\var@@temp@a
+l.89 \end{document}
+```
+
+LaTeX は「you can safely proceed」で回復し DVI も出力するが、`platex` の終了コードが **1** に
+なるため `latexmk` が PDF 生成の前に中断する（LaTeX Workshop では「Recipe terminated with
+error」）。テンプレート原本（4ページ）では起きず、内容の短い論文で発生した。
+
+**原因**
+
+- `flushend` は最終ページの2段組を揃えるため段ボックスを `\vsplit` する。
+- その箱に `nidanfloat` が入れた `\vss`（無限収縮グルー）が混ざると、e-pTeX が
+  `\vsplit` 時にエラーを出す（TeX Live 2021 のカーネルでも発生）。`flushend` の最新版
+  （v4.3 / 2025-06-18）でもこの `\vsplit` 設計は変わっていない。
+
+**修正**
+
+`23fi551_wiss.tex` のプリアンブルで `flushend` を外し、`nidanfloat` の `balance`
+オプションで最終ページの段組み揃えを維持する（テンプレート本体 `wiss_template.tex` は
+`flushend` のまま。こちらは4ページでエラーが出ない）。
+
+```diff
+-\usepackage{nidanfloat}
++\usepackage[balance]{nidanfloat}
+ \usepackage{multicol}
+ \usepackage{color}
+-\usepackage{flushend}
+ \usepackage{url}
+```
+
+> `latexmk -f`（エラーを無視して継続）では PDF が生成されず、根本解決にならない。
+
+### 5. `sample.bib` をテンプレート原本へ復元＋実文献を `references.bib` に分離（再現性）
+
+**症状**
+
+`wiss_template.tex` は `\cite{wiss}` / `\cite{rekimoto2000}` / `\cite{IEEE2014}` を参照するが、
+`sample.bib` が執筆論文の実文献（`jansen2015` 等）に差し替えられていたため、bibtex が
+**空の `.bbl`** を生成し、`! LaTeX Error: Something's wrong--perhaps a missing \item.` で
+`platex` が終了コード 1 → `latexmk` 中断。
+
+**原因**
+
+- それまで `wiss_template.tex` が通っていたのは、追跡済みの `wiss_template.bbl`（prebuilt）を
+  platex が読んでいたため。bibtex が一度でも走ると `out/` に空の `.bbl` ができ、そちらが
+  優先されてビルドが壊れる（＝別PC・再ビルドで再現しない状態だった）。
+
+**修正**
+
+- `sample.bib` をテンプレート本来の内容（`d4436dc`、警告修正済み）へ復元。
+  これで `wiss_template.tex` は prebuilt `.bbl` に依存せず、bibtex が常に正しい `.bbl` を再生成できる。
+- 執筆論文の実文献は `references.bib` に分離し、`23fi551_wiss.tex` の参照先を変更。
+  ```diff
+  -\bibliography{sample}
+  +\bibliography{references}
+  ```
+
+> `wiss_template.tex` は **一切変更していない**。
+
 ## 環境メモ
 
 - リポジトリは当初 Box Drive 上にあった。
@@ -244,4 +324,4 @@ FUNCTION { format.url }
   （オンデマンドのプレースホルダは git / LaTeX を壊す）。
 - `git config --global safe.directory` に旧パスが残っている場合は更新する。
 - TeX Live は年別ディレクトリで複数バージョンを併設できる。切替は PATH の付け替えで行う
-  （本プロジェクトは `build.ps1` と `latexmk-2021.cmd` が 2021 を優先する）。
+  （本プロジェクトは `latexmk-2021.cmd` が 2021 を優先する）。

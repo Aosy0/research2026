@@ -13,13 +13,17 @@ powershell -ExecutionPolicy Bypass -File .\install\setup-texlive2021.ps1
 
 # 2) ビルド（コマンドライン）
 cd WISS2026_Template_demo
-powershell -ExecutionPolicy Bypass -File .\build.ps1
+.\latexmk-2021.cmd wiss_template.tex   # テンプレート（4ページ）
+.\latexmk-2021.cmd 23fi551_wiss.tex    # 執筆論文
 ```
 
-生成物: `WISS2026_Template_demo\wiss_template.pdf`（**4ページ**）
+生成物: `WISS2026_Template_demo\out\wiss_template.pdf`（**4ページ**）
 
-- 既存の TeX Live 2023 (`C:\texlive\2023`) には影響しません（そのセッション内だけ 2021 を優先）。
+- 既定の TeX Live（本環境は `C:\texlive\2026`）には影響しません（そのセッション内だけ 2021 を優先）。
 - 2つ目のPCでも `install/setup-texlive2021.ps1` を実行すれば同じ構成になります。
+- 文献は論文ごとに分けています。テンプレート `wiss_template.tex` は `sample.bib`、
+  執筆論文 `23fi551_wiss.tex` は `references.bib` を参照します。
+  テンプレート本文は**原本のまま**変更していません。
 
 ## VS Code（LaTeX Workshop）
 
@@ -51,7 +55,7 @@ Overleaf がこのテンプレートを `texlive-full:2021.1` に固定してい
 
 ## 注意
 
-- `build.ps1` などの PowerShell スクリプトは **ASCII のみ**で記述しています。
+- `install/setup-texlive2021.ps1` などの PowerShell スクリプトは **ASCII のみ**で記述しています。
   BOM 無し UTF-8 の日本語コメントは Windows PowerShell 5.1 で構文エラーになるため、
   日本語の説明はこの README / NOTES に置いています。
 - `jwiss.bst` の `format.url` は JBibTeX 由来の未定義関数を参照していたため、
