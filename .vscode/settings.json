@@ -29,7 +29,8 @@
   "latex-workshop.formatting.latex": "latexindent",
   "latex-workshop.formatting.latexindent.args": ["-c", "%DIR%/", "%TMPFILE%", "-l", "%DIR%/latexindent.yaml", "-r"],
   "[latex]": {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.wordWrap": "on"
   },
   "punc-flip.excludePatterns": ["**/node_modules/**", "**/.git/**", "**/*.tex"]
 }

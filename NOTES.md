@@ -217,6 +217,17 @@ Punc Flip も「**全文を置換する編集**」を返すため、**後から�
 > 検証: LaTeX Workshop と同一のコマンドで実ファイルを処理し、終了コード 0・`、`/`。` の残り 0・
 > `，` 80 箇所を確認。設定変更後は VS Code の **「ウィンドウの再読み込み」** が必要。
 
+#### 長い行の折り返し（表示のみ）
+
+長い行は **エディタの表示折り返し**（`"[latex]": { "editor.wordWrap": "on" }`）で対応する。
+ソースは変更しない。
+
+latexindent の `modifyLineBreaks.textWrapOptions` でソース自体を折り返すことも試したが、
+日本語（空白なし）を折るには `huge: wrap` が必要で、**長いコマンドを途中で分割して壊す**
+（例: `\includegraphics[width=...]{verylongfile.eps}` → `\includegraphic` + `s[...]`、タブ混入）。
+`oneSentencePerLine` もファイル名中の `.` でコマンドを割ることがある。そのため自動ハードラップは
+採用していない。
+
 ### 検証結果（2026-09-23）
 
 | 項目 | 結果 |

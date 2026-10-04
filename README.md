@@ -85,6 +85,10 @@ latexindent に統合し、Punc Flip は `.tex` を除外しています（`.md`
 
 設定変更後は VS Code の **「ウィンドウの再読み込み」** を行ってください。
 
+長い行は**表示上だけ折り返します**（`"[latex]": { "editor.wordWrap": "on" }`）。ソースは変更しません。
+latexindent でソース自体を折り返すと、日本語では長いコマンド（`\includegraphics` 等）を
+途中で分割して壊すことがあるため採用していません（詳細は NOTES.md）。
+
 ## ドキュメント
 
 - 詳細・経緯・トラブルシュート: [NOTES.md](NOTES.md)
