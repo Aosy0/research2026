@@ -192,6 +192,31 @@ LaTeX Workshop は **ツール／レシピを OS で条件分岐できない**�
 > 症状の例: Linux で Windows 用ツールのまま実行すると
 > `spawn cmd ENOENT`（`cmd` が無い）で失敗する。上記の Linux レシピに切り替えれば解消する。
 
+### 保存時の整形と句読点変換（`、。` → `，．`）
+
+保存時に「整形」と「句読点変換」を自動で行う。当初 Punc Flip（`almond-latte.punc-flip`）を
+使っていたが、VS Code の保存時処理は**逐次実行**であり、LaTeX Workshop のフォーマッタも
+Punc Flip も「**全文を置換する編集**」を返すため、**後から適用された方だけが残り、もう片方は
+消える**（VS Code 本体 `textFileSaveParticipant.ts` / `extHostDocumentSaveParticipant.ts`）。
+両方を自動で両立させる定石は無い。
+
+そこで **latexindent に句読点置換まで統合**し、1つのフォーマッタで完結させる:
+
+- `WISS2026_Template_demo/latexindent.yaml` … `replacements` で `、`→`，`、`。`→`．`
+- `.vscode/settings.json`:
+  ```jsonc
+  "latex-workshop.formatting.latex": "latexindent",
+  "latex-workshop.formatting.latexindent.args":
+      ["-c", "%DIR%/", "%TMPFILE%", "-l", "%DIR%/latexindent.yaml", "-r"],
+  "[latex]": { "editor.formatOnSave": true },
+  "punc-flip.excludePatterns": ["**/node_modules/**", "**/.git/**", "**/*.tex"]
+  ```
+  `-r`（replacement mode）が無いと `replacements` は適用されない点に注意。
+- Punc Flip は `.tex` を除外（`.md`/`.txt` では従来どおり保存時変換が使える）。
+
+> 検証: LaTeX Workshop と同一のコマンドで実ファイルを処理し、終了コード 0・`、`/`。` の残り 0・
+> `，` 80 箇所を確認。設定変更後は VS Code の **「ウィンドウの再読み込み」** が必要。
+
 ### 検証結果（2026-09-23）
 
 | 項目 | 結果 |

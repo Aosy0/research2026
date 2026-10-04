@@ -1,0 +1,15 @@
+# latexindent local settings for this project.
+#
+# Used by .vscode/settings.json:
+#   "latex-workshop.formatting.latexindent.args": ["-c","%DIR%/","%TMPFILE%",
+#                                                   "-l","%DIR%/latexindent.yaml","-r"]
+# The `-r` flag enables replacement mode, so this file makes latexindent do the
+# Japanese punctuation conversion (、。 -> ，．) in the SAME pass as indentation.
+#
+# Why not Punc Flip: VS Code applies save-time participants sequentially and both
+# LaTeX Workshop's formatter and Punc Flip replace the WHOLE document, so only
+# the last-applied edit survives. One formatter doing both is deterministic.
+# Punc Flip is excluded for .tex via .vscode/settings.json.
+replacements:
+  - substitution: s/、/，/g
+  - substitution: s/。/．/g

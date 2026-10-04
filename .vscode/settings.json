@@ -23,5 +23,13 @@
       "tools": ["latexmk2021"]
     }
   ],
-  "latex-workshop.latex.recipe.default": "latexmk (TeX Live 2021, Linux)"
+  "latex-workshop.latex.recipe.default": "latexmk (TeX Live 2021, Linux)",
+
+  "//formatting": "On save, latexindent does indentation AND the ，． replacement (via -r + latexindent.yaml). Punc Flip is excluded for .tex to avoid two whole-document edits fighting on save (see NOTES.md).",
+  "latex-workshop.formatting.latex": "latexindent",
+  "latex-workshop.formatting.latexindent.args": ["-c", "%DIR%/", "%TMPFILE%", "-l", "%DIR%/latexindent.yaml", "-r"],
+  "[latex]": {
+    "editor.formatOnSave": true
+  },
+  "punc-flip.excludePatterns": ["**/node_modules/**", "**/.git/**", "**/*.tex"]
 }

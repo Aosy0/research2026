@@ -74,6 +74,17 @@ LaTeX Workshop はツール/レシピを **OS で分岐できない**ため、Wi
 > 補足: LaTeX Workshop の `tool.env` は `${env:PATH}` を展開せず PATH を丸ごと置換するため、
 > PATH 前置は各 OS 用ラッパー（`latexmk-2021.cmd` / `build.sh`）側で行っています。
 
+### 保存時の整形と句読点変換
+
+保存時に latexindent で**整形**し、同時に `、。` を `，．` へ置換します
+（`WISS2026_Template_demo/latexindent.yaml` の `replacements` + `-r`）。
+
+VS Code は保存時の処理を順番に実行し、フォーマッタも Punc Flip も「全文を置換する編集」を
+返すため、**両方を保存時に有効にすると片方しか残りません**。そのため句読点変換は
+latexindent に統合し、Punc Flip は `.tex` を除外しています（`.md`/`.txt` では従来どおり）。
+
+設定変更後は VS Code の **「ウィンドウの再読み込み」** を行ってください。
+
 ## ドキュメント
 
 - 詳細・経緯・トラブルシュート: [NOTES.md](NOTES.md)
