@@ -38,6 +38,9 @@ WISS2026_Template_demo/build.sh
 - インストール先は `TEXLIVE_INSTALL_PREFIX`（既定 `$HOME/texlive`）で変更できます。
 - システムの TeX Live や PATH には触れません（`build.sh` はその起動中だけ 2021 を前置）。
 - **テンプレートファイル（`.tex`/`.cls`/`.bst` 等）は変更しません。** どの環境でも同じ手順でビルドできます。
+- エディタの自動整形（LaTeX Workshop の `latexindent`）を使う場合のみ、OS の Perl モジュールを追加します
+  （スクリプトが不足を検出して案内します）:
+  `sudo apt-get install libyaml-tiny-perl libfile-homedir-perl libunicode-linebreak-perl`
 - macOS でも同じスクリプトが使えます（`bin/*-darwin` を自動検出）。
 - 2つ目のPCでも `install/setup-texlive2021.ps1` を実行すれば同じ構成になります。
 - 文献は論文ごとに分けています。テンプレート `wiss_template.tex` は `sample.bib`、

@@ -99,6 +99,15 @@ TEXLIVE_INSTALL_PREFIX="$HOME/opt/texlive" install/setup-texlive2021.sh
 - バイナリの arch ディレクトリ（`bin/x86_64-linux` 等）はスクリプトが自動検出する。
   `platex` は `eptex` へのシンボリックリンクなので、検出時に `-type l` を含める必要がある。
 - 追加パッケージ（`sttools`＝`flushend` 提供、`nidanfloat`）もスクリプトが入れる。
+- `latexindent`（エディタの自動整形用）: TeX Live 2021 は Linux でこの Perl モジュール群を
+  同梱しないため、OS 側に入れる。スクリプトが不足を検出して案内する。
+  ```bash
+  sudo apt-get install libyaml-tiny-perl libfile-homedir-perl libunicode-linebreak-perl
+  ```
+  あわせて `~/.local/bin/latexindent` に TL2021 の `latexindent` を呼ぶラッパーを生成する
+  （`~/.local/bin` が PATH にあること）。これで LaTeX Workshop の既定設定
+  （`"latex-workshop.formatting.latex": "latexindent"`）が PATH から解決できる。
+  モジュールが無いと「Can not find latexindent in PATH.」で整形が失敗する（ビルドには無関係）。
 
 ### プロファイルのポイント
 
