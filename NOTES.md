@@ -27,8 +27,10 @@ research2026/
 ├─ .vscode/
 │  └─ settings.json             … LaTeX Workshop を TL2021 でビルドする設定
 ├─ install/
-│  ├─ texlive2021.profile       … TeX Live 2021 インストール用プロファイル
-│  ├─ setup-texlive2021.ps1     … セットアップを自動化（ダウンロード〜tlmgr まで）
+│  ├─ texlive2021.profile       … TeX Live 2021 インストール用プロファイル（Windows）
+│  ├─ texlive2021-linux.profile … 同（Linux。パスは TEXLIVE_INSTALL_PREFIX から導出）
+│  ├─ setup-texlive2021.ps1     … セットアップを自動化（Windows）
+│  ├─ setup-texlive2021.sh      … セットアップを自動化（Linux/macOS）
 │  └─ texlive-2021-packages.txt … インストール済みパッケージ一覧（537件・構成の検証用）
 └─ WISS2026_Template_demo/
    ├─ wiss_template.tex  … 本文（Overleaf 原本と一致）
@@ -37,7 +39,8 @@ research2026/
    ├─ sample.bib         … サンプル文献（警告が出ないよう微修正）
    ├─ latexmkrc          … latexmk 設定
    ├─ latexmk-2021.cmd   … LaTeX Workshop 用ラッパー（PATH に TL2021 を前置）
-   └─ build.ps1          … TeX Live 2021 でビルドするスクリプト（ASCII のみ）
+   ├─ build.ps1          … TeX Live 2021 でビルドするスクリプト（Windows・ASCII のみ）
+   └─ build.sh           … TeX Live 2021 でビルドするスクリプト（Linux/macOS）
 ```
 
 ## セットアップ（各PCで1回）
@@ -77,6 +80,25 @@ $bin = 'C:\texlive\2021\bin\win32'
 & C:\texlive\2021\bin\win32\tlmgr.bat list --only-installed > install\texlive-2021-packages.txt
 ```
 
+### Linux / macOS
+
+Windows と同じ凍結リポジトリ（`tlnet-final`）から、同じパッケージ構成を
+ユーザー領域（既定 `~/texlive/2021`）へ入れる。システムの TeX Live や PATH は変更しない。
+
+```bash
+install/setup-texlive2021.sh
+# 導入先を変える場合
+TEXLIVE_INSTALL_PREFIX="$HOME/opt/texlive" install/setup-texlive2021.sh
+```
+
+- `install-tl` は `-repository` でミラーを指定し、プロファイルは
+  `install/texlive2021-linux.profile` を使う。
+- `TEXDIR` 等はハードコードせず、`TEXLIVE_INSTALL_PREFIX`（既定 `$HOME/texlive`）から
+  導出するため、どのマシンでも同じ手順で再現できる。
+- バイナリの arch ディレクトリ（`bin/x86_64-linux` 等）はスクリプトが自動検出する。
+  `platex` は `eptex` へのシンボリックリンクなので、検出時に `-type l` を含める必要がある。
+- 追加パッケージ（`sttools`＝`flushend` 提供、`nidanfloat`）もスクリプトが入れる。
+
 ### プロファイルのポイント
 
 - `selected_scheme scheme-small` ＋ `collection-langjapanese` / `collection-latexrecommended` / `collection-binextra`
@@ -111,20 +133,50 @@ powershell -ExecutionPolicy Bypass -File .\build.ps1 -Clean
 `build.ps1` はこのセッション内だけ `C:\texlive\2021\bin\win32` を PATH 先頭に足し、
 `latexmk wiss_template.tex` を実行する。既定の TeX Live 2023 には影響しない。
 
+### コマンドライン（Linux / macOS）
+
+```bash
+WISS2026_Template_demo/build.sh
+# 生成物を消してからビルドし直す場合
+WISS2026_Template_demo/build.sh --clean
+```
+
+`build.sh` はその起動中だけ `~/texlive/2021/bin/<arch>-linux`（`TEXLIVE_INSTALL_PREFIX`
+で変更可）を PATH 先頭に足し、`latexmk wiss_template.tex` を実行する。
+既定のシステム TeX Live には影響しない。**テンプレートファイルは一切変更しない。**
+
 ### VS Code（LaTeX Workshop）
 
 ユーザー設定（グローバル）は TeX Live 2023 の `latexmk` を使うため、そのままだと
 `nidanfloat` で失敗する。リポジトリの `.vscode/settings.json` でこのプロジェクトだけ
 **TL2021 を使うレシピ**に上書きしている。
 
-- `latexmk-2021.cmd` … PATH に TL2021 を前置して `latexmk` を呼ぶラッパー
-- `.vscode/settings.json` … 上記ラッパーを `cmd /c` 経由で実行するツール／レシピ
+- `latexmk-2021.cmd` … Windows 用。PATH に TL2021 を前置して `latexmk` を呼ぶラッパー
+- `build.sh` … Linux/macOS 用。PATH に TL2021 を前置して `latexmk` を呼ぶ
+- `.vscode/settings.json` … OS 別にツール／レシピを 2 つ定義
 
-> LaTeX Workshop のツール `env` は `${env:PATH}` を展開せず、PATH を丸ごと置換する
-> （該当 PR は却下済み）。そのため `env` ではなく cmd 側で PATH を設定するラッパーを使う。
+LaTeX Workshop は **ツール／レシピを OS で条件分岐できない**（`command` は文字列のみ、
+`%...%` プレースホルダも `command` には適用されない）。またツールの `env` は
+`${env:PATH}` / `$PATH` を展開せず、PATH を丸ごと置換する。そのため PATH 前置は各 OS 用の
+ラッパー側で行い、両レシピを併記して `latex-workshop.latex.recipe.default` で選ぶ。
 
-設定変更後は VS Code の **「ウィンドウの再読み込み」**（またはエディタ再起動）で
-レシピ「latexmk (TeX Live 2021)」が有効になる。
+```jsonc
+"latex-workshop.latex.recipes": [
+  { "name": "latexmk (TeX Live 2021, Linux)", "tools": ["latexmk2021-linux"] },
+  { "name": "latexmk (TeX Live 2021)",         "tools": ["latexmk2021"] }
+],
+// recipe.default はレシピ名を指定できる（"first"/"lastUsed" 以外）
+"latex-workshop.latex.recipe.default": "latexmk (TeX Live 2021, Linux)"
+```
+
+- Linux/macOS: 既定のままで `bash` + `build.sh` が動く。
+- Windows: 既定を `"latexmk (TeX Live 2021)"` に変更する（`cmd` + `.cmd` を使う）。
+- うまく既定が選ばれない場合は「LaTeX Workshop: Build with recipe」で一度選ぶ（以後は記憶される）。
+
+設定変更後は VS Code の **「ウィンドウの再読み込み」**（またはエディタ再起動）で有効になる。
+
+> 症状の例: Linux で Windows 用ツールのまま実行すると
+> `spawn cmd ENOENT`（`cmd` が無い）で失敗する。上記の Linux レシピに切り替えれば解消する。
 
 ### 検証結果（2026-09-23）
 
@@ -137,6 +189,21 @@ powershell -ExecutionPolicy Bypass -File .\build.ps1 -Clean
 | 出力 | `wiss_template.pdf` **4ページ**（`[1][2][3][4]`） |
 | `Infinite shrinkage` | 発生しない（`nidanfloat` 対策行は不要） |
 | BibTeX | エラー・警告なし。`latexmk` 終了コード **0** |
+
+### 検証結果（2026-10-04・Linux / Ubuntu 24.04）
+
+Linux 版スクリプト（`setup-texlive2021.sh` / `build.sh`）でも同じ結果を確認。
+
+| 項目 | 結果 |
+| --- | --- |
+| エンジン | e-pTeX 3.141592653-p3.9.0-210218-2.6 (utf8.euc)（TeX Live 2021/Linux） |
+| pBibTeX | 0.99d-j0.33 (utf8.euc) |
+| dvipdfmx | 20210318（Linux バイナリ。TeX Live 2021 凍結版） |
+| latexmk | 4.77 |
+| 出力 | `out/wiss_template.pdf` **4ページ**（`[1][2][3][4]`） |
+| BibTeX | エラー・警告なし。`latexmk` 終了コード **0** |
+| テンプレート | `.tex`/`.cls`/`.bst` は無改変（`git status` で新規追加はスクリプトのみ） |
+
 
 ## つまずいた点（再発防止）
 

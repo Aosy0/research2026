@@ -18,6 +18,25 @@ powershell -ExecutionPolicy Bypass -File .\build.ps1
 
 生成物: `WISS2026_Template_demo\wiss_template.pdf`（**4ページ**）
 
+## クイックスタート（Linux）
+
+```bash
+# 1) TeX Live 2021 を ~/texlive/2021 にインストール（初回のみ・15〜40分）
+install/setup-texlive2021.sh
+
+# 2) ビルド（コマンドライン）
+WISS2026_Template_demo/build.sh
+```
+
+生成物: `WISS2026_Template_demo/out/wiss_template.pdf`（**4ページ**）
+
+- Windows 版と同じ `tlnet-final`（凍結リポジトリ）から、同じパッケージ構成
+  （`scheme-small` + 日本語 + latexrecommended + binextra + `sttools`/`nidanfloat`）を導入します。
+- インストール先は `TEXLIVE_INSTALL_PREFIX`（既定 `$HOME/texlive`）で変更できます。
+- システムの TeX Live や PATH には触れません（`build.sh` はその起動中だけ 2021 を前置）。
+- **テンプレートファイル（`.tex`/`.cls`/`.bst` 等）は変更しません。** どの環境でも同じ手順でビルドできます。
+- macOS でも同じスクリプトが使えます（`bin/*-darwin` を自動検出）。
+
 - 既存の TeX Live 2023 (`C:\texlive\2023`) には影響しません（そのセッション内だけ 2021 を優先）。
 - 2つ目のPCでも `install/setup-texlive2021.ps1` を実行すれば同じ構成になります。
 
@@ -25,16 +44,35 @@ powershell -ExecutionPolicy Bypass -File .\build.ps1
 
 グローバル設定は PATH 上の `latexmk`（= TeX Live 2023）を使うため、そのままだと
 `nidanfloat` で失敗します。このリポジトリの **`.vscode/settings.json`** が、このプロジェクトだけ
-**TeX Live 2021 を使うレシピ**に上書きします（`latexmk-2021.cmd` 経由）。
+**TeX Live 2021 を使うレシピ**に上書きします。
+
+LaTeX Workshop はツール/レシピを **OS で分岐できない**ため、Windows 用（`cmd` +
+`latexmk-2021.cmd`）と Linux/macOS 用（`bash` + `build.sh`）のレシピを両方定義しています。
+
+```jsonc
+// .vscode/settings.json
+"latex-workshop.latex.recipe.default": "latexmk (TeX Live 2021, Linux)"
+```
+
+- **Linux/macOS**: 既定（上記）のままで動きます。`build.sh` がその起動中だけ TL2021 を前置します。
+- **Windows**: 既定を次のように変更してください（`cmd` 経由の既存レシピを使うため）。
+  ```jsonc
+  "latex-workshop.latex.recipe.default": "latexmk (TeX Live 2021)"
+  ```
 
 設定変更後は VS Code の **「ウィンドウの再読み込み」** を行ってください。
-レシピ「latexmk (TeX Live 2021)」が既定になります。
+うまく既定が選ばれない場合は、コマンドパレットの **「LaTeX Workshop: Build with recipe」** で
+使用するレシピを一度選ぶと、その選択が記憶されます。
+
+> 補足: LaTeX Workshop の `tool.env` は `${env:PATH}` を展開せず PATH を丸ごと置換するため、
+> PATH 前置は各 OS 用ラッパー（`latexmk-2021.cmd` / `build.sh`）側で行っています。
 
 ## ドキュメント
 
 - 詳細・経緯・トラブルシュート: [NOTES.md](NOTES.md)
-- インストール用プロファイル: [install/texlive2021.profile](install/texlive2021.profile)
-- セットアップスクリプト: [install/setup-texlive2021.ps1](install/setup-texlive2021.ps1)
+- インストール用プロファイル: [install/texlive2021.profile](install/texlive2021.profile)（Windows）/ [install/texlive2021-linux.profile](install/texlive2021-linux.profile)（Linux）
+- セットアップスクリプト: [install/setup-texlive2021.ps1](install/setup-texlive2021.ps1)（Windows）/ [install/setup-texlive2021.sh](install/setup-texlive2021.sh)（Linux）
+- ビルドスクリプト: `WISS2026_Template_demo/build.ps1`（Windows）/ [WISS2026_Template_demo/build.sh](WISS2026_Template_demo/build.sh)（Linux）
 - パッケージ一覧（構成の記録）: [install/texlive-2021-packages.txt](install/texlive-2021-packages.txt)
 
 ## なぜ TeX Live 2021 なのか
