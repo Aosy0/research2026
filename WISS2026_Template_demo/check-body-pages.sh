@@ -97,6 +97,24 @@ else
   status=1
 fi
 
+# 5) PDFサイズ（上限 20MB）
+PDF="out/${BASE}.pdf"
+if [ -f "$PDF" ]; then
+  PDF_SIZE="$(wc -c < "$PDF")"
+  if [ "$PDF_SIZE" -le 20971520 ]; then
+    echo "OK  PDFサイズ: $((PDF_SIZE / 1024)) KB（上限 20MB）"
+  else
+    echo "NG  PDFサイズ: $((PDF_SIZE / 1024)) KB → 20MB超過"
+    status=1
+  fi
+fi
+
+# 6) 原稿の静的チェック（概要文字数・図参照・章構成・句読点など）
+echo "--- 原稿の静的チェック ---"
+if ! python3 "$DIR/check-format.py" "$TEX"; then
+  status=1
+fi
+
 # 総ページ数（参考）
 grep -oE 'Output written on [^)]*\([0-9]+ pages?[^)]*\)' "$LOG" || true
 
