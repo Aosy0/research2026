@@ -4,7 +4,7 @@
 \usepackage[dvipdfmx]{graphicx}
 \usepackage[balance]{nidanfloat}
 \usepackage{multicol}
-\usepackage{color}
+\usepackage[dvipdfmx]{color}
 \usepackage{url}
 
 \journalhead{PLATEAUを用いた街模型製作支援ツールキットの開発}
@@ -13,7 +13,8 @@
 
 \title{PLATEAUを用いた街模型製作支援ツールキットの開発}
 \etitle{}
-\author{青嶋 勇太\affil{東京電機大学}　　岩井 将行${}^*$}
+% 全著者の所属が同一のためマークなしで所属を表示（\copyrightnotice は無マークの告知機構）
+\author{青嶋 勇太　　岩井 将行\copyrightnotice{東京電機大学}}
 
 \begin{abstract}
 	3D都市モデルやオープン地理データの普及に伴い，実空間のデータを立体模型として物理的に表現する「Data Physicalization」への関心が高まっている．
@@ -53,16 +54,24 @@
 
 \begin{figure}[t]
 	\centering
-	\includegraphics[width=0.74\columnwidth]{machimoki_ui.png}
+	\includegraphics[width=\columnwidth]{machimoki_ui.png}
 	\caption{machimoki Webインタフェース：PLATEAUカバレッジ表示と地図上の領域選択}
 	\label{fig:ui}
+\end{figure}
+
+% TODO: 仮画像（machimoki_ui.png）→ 3Dプレビュー画面に差し替え
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\columnwidth]{machimoki_ui.png}
+	\caption{3Dプレビュー画面：選択領域の建物と地形}
+	\label{fig:preview}
 \end{figure}
 
 \section{システム実装}
 machimokiは，フロントエンド，コア幾何演算エンジン，バックエンドAPIからなる3層構成で実装した．
 
 \subsection{フロントエンド（Web UI）}
-ReactおよびViteを採用し，地図基盤としてCesiumJSとThree.jsを組み合わせている．ユーザーは地理院タイル\cite{gsi}を重畳した地図上で，希望する街区を矩形選択できる（図\ref{fig:ui}）．PLATEAUの整備カバレッジ範囲をオーバーレイ表示し，データが存在する地域を即座に視認可能である．選択領域の建物・地形はThree.jsにより瞬時に3Dプレビュー表示され，模型サイズ，縮尺，地形底面厚み，底面フラット化パラメータをリアルタイムに調整できる．
+ReactおよびViteを採用し，地図基盤としてCesiumJSとThree.jsを組み合わせている．ユーザーは地理院タイル\cite{gsi}を重畳した地図上で，希望する街区を矩形選択できる（図\ref{fig:ui}）．PLATEAUの整備カバレッジ範囲をオーバーレイ表示し，データが存在する地域を即座に視認可能である．選択領域の建物・地形はThree.jsにより瞬時に3Dプレビュー表示され（図\ref{fig:preview}），模型サイズ，縮尺，地形底面厚み，底面フラット化パラメータをリアルタイムに調整できる．
 
 \subsection{幾何演算パイプラインと品質検証}
 本ツールの幾何演算処理は，WebAssembly版の\verb|manifold-3d|\cite{manifold3d}を用いて高速・堅牢に実行される．パイプラインは以下のステップで処理を行う：
@@ -76,14 +85,22 @@ ReactおよびViteを採用し，地図基盤としてCesiumJSとThree.jsを組�
 \section{制作例と検証}
 実都市データを対象としたモデル生成とスライサー適性の検証を行った．
 
+% TODO: 仮画像（machimoki_ui.png）→ 3Dプリントした模型の写真に差し替え
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\columnwidth]{machimoki_ui.png}
+	\caption{生成モデルを3Dプリントした模型（東京都新宿駅周辺，1/2000）}
+	\label{fig:print}
+\end{figure}
+
 \subsection{実都市街区を対象としたモデル生成}
-超高層ビル群と複雑な街区形状を有する東京都新宿駅周辺を対象とし，1/2000スケールでのモデル生成を実施した．Web UI上での範囲選択後，数十秒程度で建物群と起伏のある地形が一体化したモデルが自動生成された．底面が開口していた各建物が確実にキャッピングされ，地形メッシュとの境界も隙間なく結合されることを確認した．
+超高層ビル群と複雑な街区形状を有する東京都新宿駅周辺を対象とし，1/2000スケールでのモデル生成を実施した（図\ref{fig:print}）．Web UI上での範囲選択後，数十秒程度で建物群と起伏のある地形が一体化したモデルが自動生成された．底面が開口していた各建物が確実にキャッピングされ，地形メッシュとの境界も隙間なく結合されることを確認した．
 
 \subsection{メッシュ品質検証とスライス適性の確認}
 生成された3MFファイルに対し，machimokiの検証エンジンによる評価を実施した．その結果，オープンエッジ数0，非多様体エッジ数0，自己交差数0を達成し，完全な閉じたメッシュとして「pass」判定を得た．さらに，一般的な3Dプリンタ用スライサー（PrusaSlicerおよびBambu Studio）に本モデルをインポートし，スライス処理を実行した．メッシュ破損警告や中空判定のエラーを生じることなく，正常に積層パスが生成されることを確認した．また，3MF形式により建物部と地形部が別パーツとして認識され，色分け印刷に対応できることを確認した．
 
 \section{まとめ}
-本稿では，PLATEAUの3D都市モデルと地形データから3Dプリント可能な閉じたメッシュ模型を自動生成するツールキット「machimoki」を提案した．Webベースの直感的なUI，manifold-3dを用いた堅牢な幾何演算パイプライン，品質自動検証，3MFマルチカラー出力を実装し，実都市データを用いた検証によりスライサー適性を確認した．今後は，模型内部の中空化や電子部品配置用ソケットの生成機能，IoTデバイスとの連携を進める．
+本稿では，PLATEAUの3D都市モデルと地形データから3Dプリント可能な閉じたメッシュ模型を自動生成するツールキット「machimoki」を提案した．Webベースの直感的なUI，manifold-3dを用いた堅牢な幾何演算パイプライン，品質自動検証，3MFマルチカラー出力を実装し，実都市データを用いた検証によりスライサー適性を確認した．今後は，模型内部の中空化や電子部品配置用ソケットの生成機能，IoTデバイスとの連携を進める．\label{bodyend}
 
 \section*{謝辞}
 本研究は国土交通省Project\\PLATEAUの都市モデル，国土地理院の地図データを利用した．関係各位に感謝する．
