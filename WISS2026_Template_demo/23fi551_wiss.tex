@@ -42,12 +42,12 @@
 そこで本研究では，Web地図上で領域を指定するだけで，PLATEAUの建物と地形を統合した印刷可能なメッシュモデルを自動生成・検証するツールキット「machimoki」を開発した．
 
 \section{システム実装}
-machimokiは，フロントエンド，コア幾何演算エンジン，バックエンドAPIからなる3層構成で実装した．
+machimokiは，フロントエンド，3Dモデルの生成・検証，配信・APIの3層構成で実装した．
 
-\subsection{フロントエンド（Web UI）}
+\subsection{フロントエンド（frontend）}
 ReactおよびViteを採用し，地図基盤としてCesiumJSとThree.jsを組み合わせている．ユーザーは地理院タイル\cite{gsi}を重畳した地図上で，希望する街区を矩形選択できる（図\ref{fig:ui}）．PLATEAUの整備カバレッジ範囲をオーバーレイ表示し，データが存在する地域を即座に視認可能である．選択領域の建物・地形はThree.jsにより瞬時に3Dプレビュー表示され（図\ref{fig:preview}），模型サイズ，縮尺，地形底面厚み，底面フラット化パラメータをリアルタイムに調整できる．
 
-\subsection{幾何演算パイプラインと品質検証}
+\subsection{3Dモデルの生成・検証（core）}
 本ツールの幾何演算処理は，WebAssembly版の\verb|manifold-3d|\cite{manifold3d}を用いて高速・堅牢に実行される．パイプラインは以下のステップで処理を行う：
 1)~矩形範囲をWGS84座標系で正規化し，
 2)~PLATEAU 3D TilesからglTFを取得し接地輪郭から底面開口部を塞ぐ（底面キャッピング），
@@ -70,6 +70,9 @@ ReactおよびViteを採用し，地図基盤としてCesiumJSとThree.jsを組�
 	\caption{3Dプレビュー画面：選択領域の建物と地形}
 	\label{fig:preview}
 \end{figure}
+
+\subsection{配信・API（worker）}
+配信・API層はCloudflare Worker上に実装し，PLATEAUのデータカタログとカバレッジタイルの配信をKV/R2のキャッシュ経由で担う．エクスポートと検証のAPIは，ブラウザ内での処理が失敗した場合のフォールバックとして，重い処理をoriginのcore APIへ転送する．
 
 \section{制作例と検証}
 実都市データを対象としたモデル生成とスライサー適性の検証を行った．
