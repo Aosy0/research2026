@@ -46,7 +46,11 @@
 PLATEAUの建物と地形を統合した印刷可能なメッシュモデルを自動生成・検証する\allowbreak{}ツールキット「machimoki」を開発した．
 
 \section{関連研究}
-地理空間データの物理化は，物理可視化の有効性の実証\cite{jansen2013,jansen2015}を背景に，非専門家への知識埋め込みを課題とするパーソナルファブリケーション研究と接続する\cite{baudisch2017}．都市3Dデータの水密化にはCityGML LOD2の修復\cite{zhao2013,zhao2018}，穴埋め\cite{gao2024}，建物と地形のwatertight統合\cite{ledoux2021,paden2022}が確立し，印刷解像度との対応\cite{ghawana2013}も論じられるが，いずれも専門ツールと手作業を前提とするか，印刷向けの品質検証を欠く．PLATEAUを用いた教育ワークショップも，手作業パイプラインは非専門家には複雑すぎ，turnkeyな自動化後継が必要と明言している\cite{martial2026}．本研究は新規の幾何アルゴリズムを主張せず，既存知見\cite{attene2013,ledoux2018}をPLATEAUの3D Tilesに適用し，範囲選択から水密ソリッド化・検証・3MF/STL出力までをブラウザだけで非専門家に提供する点に寄与がある．
+地理空間データの物理化は，物理可視化の有効性の実証\cite{jansen2013,jansen2015}を背景に，
+非専門家への知識埋め込みを課題とするパーソナルファブリケーション研究と接続する\cite{baudisch2017}．
+都市3Dデータの水密化にはCityGML LOD2の修復\cite{zhao2013,zhao2018}，穴埋め\cite{gao2024}，建物と地形のwatertight統合\cite{ledoux2021,paden2022}が確立し，印刷解像度との対応\cite{ghawana2013}も論じられるが，いずれも専門ツールと手作業を前提とするか，印刷向けの品質検証を欠く．
+PLATEAUを用いた教育ワークショップも，手作業パイプラインは非専門家には複雑すぎ，turnkeyな自動化後継が必要と明言している\cite{martial2026}．
+本研究は新規の幾何アルゴリズムを主張せず，既存知見\cite{attene2013,ledoux2018}をPLATEAUの3D Tilesに適用し，範囲選択から水密ソリッド化・検証・3MF/STL出力までをブラウザだけで非専門家に提供する点に寄与がある．
 
 \section{machimokiの設計要件}
 前述の課題を解決するため，以下の設計要件を定めた．
@@ -58,7 +62,7 @@ PLATEAUの建物と地形を統合した印刷可能なメッシュモデルを�
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=\columnwidth]{machimoki_ui.png}
-	\caption{machimoki Webインタフェース：PLATEAUカバレッジ表示と地図上の領域選択}
+	\caption{machimoki Webインタフェース：PLATEAUカバレッジ表示と地図上の領域選択（地図データ：国土地理院）}
 	\label{fig:ui}
 \end{figure}
 
@@ -106,7 +110,7 @@ ReactおよびViteを採用し，地図基盤としてCesiumJSとThree.jsを組�
 本稿では，PLATEAUの3D都市モデルと地形データから3Dプリント可能な閉じたメッシュ模型を自動生成するツールキット「machimoki」を提案した．Webベースの直感的なUI，manifold-3dを用いた堅牢な幾何演算パイプライン，品質自動検証，3MFマルチカラー出力を実装し，実都市データを用いた検証によりスライサー適性を確認した．今後は，模型内部の中空化や電子部品配置用ソケットの生成機能，IoTデバイスとの連携を進める．\label{bodyend}
 
 \section*{謝辞}
-本研究は国土交通省Project\\PLATEAUの都市モデル，国土地理院の地図データを利用した．関係各位に感謝する．
+本研究では，国土交通省の「Project PLATEAU」が公開する3D都市モデルを加工して利用した．また，背景地図に国土地理院の地理院タイルを使用した．ここに記して謝意を表する．
 
 {\small
 \bibliographystyle{jwiss}
