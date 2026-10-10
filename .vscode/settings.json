@@ -24,6 +24,8 @@
     }
   ],
   "latex-workshop.latex.recipe.default": "latexmk (TeX Live 2021, Linux)",
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "//autobuild": "保存時の自動ビルドは onSave に固定する。既定の onFileChange は latexindent の整形書き込みや他プロセスの変更でもビルドが走り、out/ の .aux を書き手が競合して bibtex が「no \\citation commands」で失敗することがある（2026-10-10）。",
 
   "//formatting": "On save, latexindent does indentation AND the ，． replacement (via -r + latexindent.yaml). Punc Flip is excluded for .tex to avoid two whole-document edits fighting on save (see NOTES.md).",
   "latex-workshop.formatting.latex": "latexindent",
