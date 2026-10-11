@@ -69,6 +69,14 @@ PLATEAUのデータが整備されている範囲をオーバーレイ表示し�
 選択範囲の建物・地形はCesiumJSにより3Dプレビュー表示され（図\ref{fig:preview}），
 模型サイズ，地形底面厚み，底面フラット化などのパラメータをリアルタイムに調整できる．
 
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\columnwidth]{machimoki_ui.png}
+	\caption{machimoki Webインタフェース：PLATEAUカバレッジ表示と地図上の領域選択（地図データ：国土地理院）
+	}
+	\label{fig:ui}
+\end{figure}
+
 \subsection{3Dモデルの生成・検証（core）}
 本ツールの3Dモデル生成では，
 WebAssembly版の\verb|manifold-3d|\cite{manifold3d}を用いて以下のステップで処理する．
@@ -83,14 +91,6 @@ WebAssembly版の\verb|manifold-3d|\cite{manifold3d}を用いて以下のステ�
 出力モデルはCADのB-Repソリッドではなくポリゴンメッシュである．
 さらに，モデルとメタデータをZIP形式でまとめた独自コンテナ形式（\verb|.machimoki|）
 のエクスポートにも対応している．
-
-\begin{figure}[t]
-	\centering
-	\includegraphics[width=\columnwidth]{machimoki_ui.png}
-	\caption{machimoki Webインタフェース：PLATEAUカバレッジ表示と地図上の領域選択（地図データ：国土地理院）
-	}
-	\label{fig:ui}
-\end{figure}
 
 % TODO: 仮画像（machimoki_ui.png）→ 3Dプレビュー画面に差し替え
 \begin{figure}[t]
@@ -112,7 +112,7 @@ PLATEAUのデータカタログとカバレッジタイルの配信をKVとR2を
 % TODO: 仮画像（machimoki_ui.png）→ 3Dプリントした模型の写真に差し替え
 \begin{figure}[t]
 	\centering
-	\includegraphics[width=\columnwidth]{machimoki_ui.png}
+	\includegraphics[width=\columnwidth]{IMG_6336.jpg}
 	\caption{生成モデルを3Dプリントした模型（東京都新宿駅周辺，1/2000）}
 	\label{fig:print}
 \end{figure}
@@ -148,6 +148,8 @@ STL/3MF出力を実装し，実都市データを用いた検証によりスラ�
 \bibliographystyle{jwiss}
 \bibliography{references}
 }
+
+\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 未来ビジョン（ページ数対象外．枠のサイズ(縦93mm)は変更しない）
