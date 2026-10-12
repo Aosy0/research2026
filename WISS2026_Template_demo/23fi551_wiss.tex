@@ -85,7 +85,7 @@ PLATEAUのデータが整備されている範囲をオーバーレイ表示し�
 4)建物群と地形メッシュをブール結合（Union）し，自己交差を解消したひとつの閉じたメッシュモデルを構築する．
 
 % TODO: 仮画像（machimoki_ui.png）→ 3Dプレビュー画面に差し替え
-\begin{figure}[t]
+\begin{figure}[hb]
 	\centering
 	\includegraphics[width=\columnwidth]{machimoki_ui.png}
 	\caption{3Dプレビュー画面：選択範囲の建物と地形}
@@ -102,7 +102,7 @@ Webアプリ本体を静的配信する．
 \section{制作例と検証}
 実際の都市データを対象としたモデル生成と検証を行った．
 
-\begin{figure}[t]
+\begin{figure}[hb]
 	\centering
 	\includegraphics[width=\columnwidth]{IMG_6336.jpg}
 	\caption{生成モデルを3Dプリントした模型（東京電機大学 千住キャンパス，1/2437）}
@@ -125,7 +125,6 @@ Webアプリ本体を静的配信する．
 PLATEAUの3D都市モデルと地形データから3Dプリント可能な閉じたメッシュモデルを自動生成するツールキット「machimoki」
 を開発した．WebベースのUI，manifold-3dを用いたメッシュの生成・結合と検査，
 STL/3MF出力を実装し，実際の都市データを用いた検証では，この検査とスライサー（PrusaSlicer，Bambu Studio）によりスライス処理を確認した．
-生成した模型は，スライサーで中空化すると内部にLEDやセンサーを組み込むことができる．
 検証では，地形タイルと建物データの標高の不一致による接続性の改善が課題として残った．
 今後は，中空化機能や電子部品配置用ソケットの生成，IoTデバイスとの連携を実装する予定である．
 \label{bodyend}
