@@ -62,16 +62,16 @@ PLATEAUの建物と地形を統合した印刷可能なメッシュモデルを�
 machimokiは，frontend，core，workerの3層構成で実装している．
 
 \subsection{フロントエンド（frontend）}
-ReactおよびViteを採用し，2D地図にはMapLibre GL，3DプレビューにはCesiumJSを用いる．
+フロントエンド開発にはJavaScriptライブラリであるReactとフロントエンドビルドツールであるViteを採用し，2D地図の表示にはオープンソースライブラリであるMapLibre GL，3D地図の表示にはJavaScriptライブラリであるCesiumJSを用いる．
 ユーザーは地理院タイル\cite{gsi}を使用した地図上で，
 任意の範囲を矩形選択できる（図\ref{fig:ui}）．
 PLATEAUのデータが整備されている範囲をオーバーレイ表示し，データが存在する地域を即座に確認可能である．
-選択範囲の建物・地形はCesiumJSにより3Dプレビュー表示され（図\ref{fig:preview}），
+選択範囲の建物・地形はCesiumJSにより3D地図として表示され（図\ref{fig:preview}），
 模型サイズ，地形底面厚み，底面フラット化などのパラメータをリアルタイムに調整できる．
 
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=\columnwidth]{machimoki-map.png}
+	\includegraphics[width=0.85\columnwidth]{machimoki-map.png}
 	\caption{machimoki Webインタフェース：PLATEAUカバレッジ表示と地図上の領域選択（地図データ：国土地理院）
 	}
 	\label{fig:ui}
@@ -80,31 +80,33 @@ PLATEAUのデータが整備されている範囲をオーバーレイ表示し�
 \subsection{3Dモデルの生成（core）}
 本ツールの3Dモデル生成では，WebAssembly版の\verb|manifold-3d|\cite{manifold3d}を用いて以下の4段階で処理する．
 1)選択範囲をWGS84座標系に正規化する．
-2)PLATEAU 3D Tilesから建物のglTFを取得し，接地輪郭から底面開口部を塞ぐ．
+2)PLATEAU 3D Tilesから，3Dモデルの形状や外観などを記述するファイル形式であるglTF形式の建物データを取得し，接地輪郭から底面開口部を塞ぐ．
 3)標高データを格子状にサンプリングし，地表に厚みを与える．このとき，下面を最も低い地表点から厚み分だけ下げた水平面とすることで，平らな底面をもつ地形メッシュを生成する．
 4)建物群と地形メッシュをブール結合（Union）し，自己交差を解消したひとつの閉じたメッシュモデルを構築する．
 
 % TODO: 仮画像（machimoki_ui.png）→ 3Dプレビュー画面に差し替え
 \begin{figure}[hb]
 	\centering
-	\includegraphics[width=\columnwidth]{machimoki-3dpreview.png}
-	\caption{3Dプレビュー画面：選択範囲の建物と地形}
+	\includegraphics[width=0.85\columnwidth]{machimoki-3dpreview.png}
+	\caption{3D地図表示：選択範囲の建物と地形}
 	\label{fig:preview}
 \end{figure}
 
 \subsection{配信・API（worker）}
-配信・API層はCloudflare Worker上に実装し，
+配信・API層はCloudflare社が提供するクラウドサービスであるCloudflare Worker上に実装し，
 Webアプリ本体を静的配信する．
-また，PLATEAUデータの整備状況を示すカバレッジタイルをR2から配信する．
+また，PLATEAUデータの整備状況を示すカバレッジタイルを，同じくCloudflare社が提供するオブジェクトストレージサービスであるR2から配信する．
 エクスポートと検証のAPIは，ブラウザ内での処理が失敗した場合のフォールバックとして，
 負荷の大きい処理をオリジンサーバ上のcore APIへ転送する．
 
 \section{制作例と検証}
 実際の都市データを対象としたモデル生成と検証を行った．
 
+生成したモデルの検査では，オープンエッジ数，非多様体エッジ数，自己交差数，接続シェル数を評価する．はじめの3つがすべて0でシェル数が1のときを合格，シェル数のみが2以上のときをwarning，それ以外を不合格とする．
+
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=\columnwidth]{IMG_6336.jpg}
+	\includegraphics[width=0.85\columnwidth]{IMG_6336.jpg}
 	\caption{生成モデルを3Dプリントした模型（東京電機大学 千住キャンパス，1/2437）}
 	\label{fig:print}
 \end{figure}
@@ -117,8 +119,7 @@ Webアプリ本体を静的配信する．
 \subsection{メッシュ品質検証とスライス適性の確認}
 生成したモデルを検証した結果，オープンエッジ数0，非多様体エッジ数0，自己交差数0であったが，
 地形タイルの解像度と建物データの標高の不一致により接続シェル数が2となり，warning判定となった．
-また，模型をスライサー（PrusaSlicerおよびBambu Studio）に取り込み，
-メッシュ破損などのエラーは生じず，積層パスが正常に生成されることを確認した．
+また，3Dモデルの形状や構造を確認するため，3Dモデルの表示・解析機能を備えたスライサーソフトウェアに模型を読み込んだ．ここではPrusa Researchが開発したPrusaSlicerとBambu Labが開発したBambu Studioを用いた．メッシュ破損などのエラーは生じず，積層パスが正常に生成されることを確認した．
 
 \section{まとめ}
 本稿では，
