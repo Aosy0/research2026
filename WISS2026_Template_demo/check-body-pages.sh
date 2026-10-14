@@ -80,10 +80,31 @@ else
   echo "INFO 図ラベル（fig:*）なし"
 fi
 
-# 3) 余白はみ出し
-OVER="$(grep -c 'Overfull \\hbox' "$LOG" 2>/dev/null || true)"
+# 3) 余白はみ出し（テンプレート由来のものは除外）
+#    公式テンプレート（wiss_template.tex）でも同じ Overfull が出るため、
+#    テンプレートの Overfull 量と一致するものは「テンプレート由来」として無視する。
+TPL_TEX="wiss_template.tex"
+TPL_LOG="out/wiss_template.log"
+if [ -f "$TPL_TEX" ] && [ ! -f "$TPL_LOG" ]; then
+  ./build.sh "$TPL_TEX" >/dev/null 2>&1 || true
+fi
+TPL_AMOUNTS=""
+if [ -f "$TPL_LOG" ]; then
+  TPL_AMOUNTS="$(grep -oE 'Overfull \\hbox \([0-9.]+pt' "$TPL_LOG" | grep -oE '[0-9.]+' | sort -u)"
+fi
+OVER=0
+OVER_TPL=0
+while IFS= read -r ol; do
+  [ -z "$ol" ] && continue
+  amt="$(printf '%s' "$ol" | grep -oE '\([0-9.]+pt' | grep -oE '[0-9.]+')"
+  if [ -n "$TPL_AMOUNTS" ] && printf '%s\n' "$TPL_AMOUNTS" | grep -qx "$amt"; then
+    OVER_TPL=$((OVER_TPL + 1))
+  else
+    OVER=$((OVER + 1))
+  fi
+done < <(grep 'Overfull \\hbox' "$LOG" 2>/dev/null || true)
 if [ "$OVER" -eq 0 ]; then
-  echo "OK  Overfull \\hbox: 0件"
+  echo "OK  Overfull \\hbox: 0件（テンプレート由来 ${OVER_TPL}件は除外）"
 else
   echo "WARN Overfull \\hbox: ${OVER}件（余白はみ出し。要修正）"
 fi
