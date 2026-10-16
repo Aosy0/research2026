@@ -110,7 +110,7 @@ workerのAPIが負荷の大きい処理をオリジンサーバ上のcore APIへ
 	\label{fig:print}
 \end{figure}
 
-\subsection{大学キャンパスを対象としたモデル生成}
+\subsection{モデル生成の例}
 東京都足立区の東京電機大学千住キャンパスを対象に，machimokiで1/2437（印刷模型は約10cm四方）の
 モデルを生成し，3Dプリントした（図\ref{fig:print}）．Web UI上での範囲選択後，数十秒で建物群と
 地形が1つのメッシュとして生成された．
@@ -131,7 +131,12 @@ STL/3MF出力を実装し，実際の都市データを用いた検証では，�
 
 \section*{謝辞}
 本研究では，国土交通省の「Project PLATEAU」が公開する3D都市モデルを加工して利用した．また，
-背景地図に国土地理院の地理院タイルを使用した．さらに，UIの施設検索にはOpenStreetMapのデータを利用した．ここに記して謝意を表する．
+背景地図に国土地理院の地理院タイルを使用した．さらに，UIの施設検索にはOpenPOI APIを利用した．
+その出典は \url{https://openpoiapi.com/}\allowbreak\url{attribution.html} である．
+また，フォールバックのジオコーダPhotonには，OpenStreetMapのデータを利用した．
+その出典は \url{https://www.openstreetmap.org/}\allowbreak\url{copyright} である．
+本研究はJSPS科研費26H01933（基盤研究(A)）の助成を受けたものである．立教大学文学部の野中 健一教授には，
+多くのアドバイスと応用事例のご示唆をいただいた．ここに記して謝意を表する．
 
 {\small
 \bibliographystyle{jwiss}
